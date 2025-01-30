@@ -103,6 +103,7 @@ install(
   EXPORT ${TARGETS_EXPORT_NAME}
   DESTINATION lib)
 
+add_subdirectory(ext/nanobind)
 add_subdirectory(src)
 add_subdirectory(tests)
 
