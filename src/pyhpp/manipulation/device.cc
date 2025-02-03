@@ -28,6 +28,14 @@ namespace manipulation {
 using namespace boost::python;
 using namespace hpp::manipulation;
 
+bool check(const DevicePtr_t& device)
+{
+  for (auto const& g: device->grippers.map)
+  {
+    std::cout << g.first << std::endl;
+  }
+}
+
 std::map<std::string, HandlePtr_t> getDeviceHandles(const DevicePtr_t& device)
 {
   return device->handles.map;
@@ -102,7 +110,8 @@ void exposeDevice() {
     .staticmethod("create")
     .def("setRobotRootPosition", &Device::setRobotRootPosition)
     .def("handles", &getDeviceHandles)
-    .def("grippers", &getDeviceGrippers);
+    .def("grippers", &getDeviceGrippers)
+      .def("check", &check);
 }
 } // namespace manipulation
 } // namespace pyhpp
