@@ -36,14 +36,13 @@ macro(ADD_PYTHON_LIBRARY MODULE)
 
   string(REGEX REPLACE "[/-]" "_" TARGET_NAME "${MODULE}")
   set(LIBNAME "bindings")
-  add_library(${TARGET_NAME} SHARED ${GENERATED_FILES})
+  nanobind_add_module(${TARGET_NAME} SHARED ${GENERATED_FILES})
   set_target_properties(
     ${TARGET_NAME}
     PROPERTIES PREFIX ""
                LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${MODULE}
                LIBRARY_OUTPUT_NAME ${LIBNAME})
-
-  target_link_boost_python(${TARGET_NAME} PUBLIC)
+  target_include_directories(${TARGET_NAME} PRIVATE ${PYTHON_INCLUDE_DIRS})
   target_link_libraries(
     ${TARGET_NAME} PUBLIC eigenpy::eigenpy ${ADD_PYTHON_LIBRARY_LINK_LIBRARIES})
 

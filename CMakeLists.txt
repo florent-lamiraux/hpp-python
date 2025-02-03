@@ -54,7 +54,6 @@ endif()
 
 include("${JRL_CMAKE_MODULES}/base.cmake")
 include("${JRL_CMAKE_MODULES}/python.cmake")
-include("${JRL_CMAKE_MODULES}/boost.cmake")
 include("${JRL_CMAKE_MODULES}/test.cmake")
 
 compute_project_args(PROJECT_ARGS LANGUAGES CXX)
@@ -85,7 +84,6 @@ set(${PROJECT_NAME}_HEADERS include/pyhpp/core/fwd.hh)
 
 set(PYTHON_COMPONENTS Interpreter Development NumPy)
 findpython()
-search_for_boost_python()
 
 add_project_dependency(eigenpy REQUIRED)
 add_project_dependency(pinocchio REQUIRED)
