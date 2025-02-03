@@ -15,7 +15,7 @@
 // received a copy of the GNU Lesser General Public License along with
 // hpp-core. If not, see <http://www.gnu.org/licenses/>.
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <hpp/core/config-validation.hh>
 #include <hpp/core/config-validations.hh>
 #include <hpp/core/configuration-shooter.hh>

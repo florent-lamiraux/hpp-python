@@ -21,7 +21,7 @@
 #include <hpp/constraints/solver/hierarchical-iterative.hh>
 // cland-format on
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
 #include <pyhpp/constraints/fwd.hh>
 #include <pyhpp/util.hh>

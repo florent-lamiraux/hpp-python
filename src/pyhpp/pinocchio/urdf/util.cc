@@ -16,7 +16,7 @@
 // hpp-python  If not, see
 // <http://www.gnu.org/licenses/>.
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <hpp/pinocchio/urdf/util.hh>
 #include <pyhpp/pinocchio/urdf/fwd.hh>
 

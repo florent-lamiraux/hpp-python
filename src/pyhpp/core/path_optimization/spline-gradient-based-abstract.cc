@@ -16,7 +16,7 @@
 // hpp-python  If not, see
 // <http://www.gnu.org/licenses/>.
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
 #include <hpp/core/collision-path-validation-report.hh>
 #include <hpp/core/path-optimization/linear-constraint.hh>

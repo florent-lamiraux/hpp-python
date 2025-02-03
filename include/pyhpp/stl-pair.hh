@@ -20,7 +20,7 @@
 #ifndef PYHPP_STD_PAIR_HH
 #define PYHPP_STD_PAIR_HH
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 
 namespace pyhpp {
 template <typename T1, typename T2>

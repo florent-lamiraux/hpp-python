@@ -15,7 +15,7 @@
 // received a copy of the GNU Lesser General Public License along with
 // hpp-core. If not, see <http://www.gnu.org/licenses/>.
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <eigenpy/eigenpy.hpp>
 #include <hpp/constraints/solver/by-substitution.hh>
 #include <hpp/core/config-projector.hh>

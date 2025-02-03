@@ -17,7 +17,7 @@
 // hpp-python  If not, see
 // <http://www.gnu.org/licenses/>.
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <boost/python/suite/indexing/vector_indexing_suite.hpp>
 #include <eigenpy/eigenpy.hpp>
 #include <hpp/core/path-optimizer.hh>

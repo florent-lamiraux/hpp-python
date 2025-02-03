@@ -14,7 +14,7 @@
 // received a copy of the GNU Lesser General Public License along with
 // hpp-core. If not, see <http://www.gnu.org/licenses/>.
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <hpp/corbaserver/server.hh>
 #include <hpp/corbaserver/wholebody-step/server.hh>
 #include <hpp/core/problem-solver.hh>

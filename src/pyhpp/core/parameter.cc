@@ -14,7 +14,7 @@
 // received a copy of the GNU Lesser General Public License along with
 // hpp-python. If not, see <http://www.gnu.org/licenses/>.
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <hpp/core/parameter.hh>
 #include <pyhpp/core/fwd.hh>
 #include <pyhpp/util.hh>

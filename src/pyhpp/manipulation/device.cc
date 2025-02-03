@@ -16,7 +16,7 @@
 // hpp-python  If not, see
 // <http://www.gnu.org/licenses/>.
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <boost/python/suite/indexing/map_indexing_suite.hpp>
 #include <pinocchio/spatial/se3.hpp>
 #include <hpp/constraints/implicit.hh>

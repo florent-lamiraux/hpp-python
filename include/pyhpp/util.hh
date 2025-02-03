@@ -20,7 +20,7 @@
 #ifndef PYHPP_FWD_HH
 #define PYHPP_FWD_HH
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <eigenpy/eigenpy.hpp>
 #include <hpp/util/pointer.hh>
 #include <vector>

@@ -16,8 +16,7 @@
 // hpp-python  If not, see
 // <http://www.gnu.org/licenses/>.
 
-#include <boost/python.hpp>
-#include <boost/python/suite/indexing/map_indexing_suite.hpp>
+#include <nanobind/nanobind.h>
 #include <eigenpy/eigenpy.hpp>
 #include <hpp/pinocchio/device-data.hh>
 #include <hpp/pinocchio/device.hh>
@@ -70,8 +69,7 @@ void exposeGripper() {
     .def("create", &Gripper::create)
     .staticmethod("create")
     .add_property("localPosition", &getObjectPositionInJoint);
-  class_< std::map<std::string, GripperPtr_t> >("GripperMap")
-    .def(boost::python::map_indexing_suite< std::map<std::string, GripperPtr_t>, true >());
+  class_< std::map<std::string, GripperPtr_t> >("GripperMap");
 }
 void exposeDevice() {
   enum_<Computation_t>("ComputationFlag")

@@ -16,7 +16,7 @@
 // hpp-python  If not, see
 // <http://www.gnu.org/licenses/>.
 
-#include <boost/python.hpp>
+#include <nanobind/nanobind.h>
 #include <hpp/core/path/spline.hh>
 #include <hpp/python/config.hh>
 #include <pyhpp/core/path/fwd.hh>
