@@ -22,8 +22,7 @@
 #include <pyhpp/stl-pair.hh>
 #include <pyhpp/util.hh>
 
-BOOST_PYTHON_MODULE(bindings) {
-  INIT_PYHPP_MODULE;
+NB_MODULE("pyhpp.constraints", m) {
 
   boost::python::import("pyhpp.pinocchio");
 

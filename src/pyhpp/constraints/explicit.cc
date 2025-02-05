@@ -21,11 +21,12 @@
 #include <hpp/constraints/explicit.hh>
 #include <pinocchio/multibody/fwd.hpp>
 
-using namespace boost::python;
+extern nanobind::module_ m;
 
 namespace pyhpp {
 namespace constraints {
 using namespace hpp::constraints;
+using namespace nanobind;
 
 Eigen::BlockIndex::segments_t toSegments(const std::vector<size_type>& in) {
   segments_t out;
@@ -37,7 +38,7 @@ Eigen::BlockIndex::segments_t toSegments(const std::vector<size_type>& in) {
 Eigen::BlockIndex::segments_t toSegments(const list& in) {
   segments_t out(len(in));
   for (int i = 0; i < len(in); ++i)
-    out[i] = extract<Eigen::BlockIndex::segment_t>(in[i]);
+    out[i] = cast<Eigen::BlockIndex::segment_t>(in[i]);
   return out;
 }
 
@@ -51,9 +52,9 @@ ExplicitPtr_t createExplicit(const LiegroupSpacePtr_t& configSpace,
 }
 
 void exposeExplicit() {
-  class_<Explicit, ExplicitPtr_t, boost::noncopyable>("Explicit", no_init)
-      .def("create", &createExplicit)
-      .staticmethod("create");
+  using namespace nanobind;
+  class_<Explicit>(m, "Explicit")
+    .def("create", &createExplicit, nanobind::rv_policy::move)
 }
 }  // namespace constraints
 }  // namespace pyhpp
