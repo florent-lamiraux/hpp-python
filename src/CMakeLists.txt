@@ -43,9 +43,9 @@ macro(ADD_PYTHON_LIBRARY MODULE)
                LIBRARY_OUTPUT_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}/${MODULE}
                LIBRARY_OUTPUT_NAME ${LIBNAME})
 
-  target_link_boost_python(${TARGET_NAME} PUBLIC)
   target_link_libraries(
-    ${TARGET_NAME} PUBLIC eigenpy::eigenpy ${ADD_PYTHON_LIBRARY_LINK_LIBRARIES})
+    ${TARGET_NAME} PUBLIC eigenpy::eigenpy ${ADD_PYTHON_LIBRARY_LINK_LIBRARIES}
+    PRIVATE ${PROJECT_BINARY_DIR}/src/boost-python/libboost-python.so)
 
   install(TARGETS ${TARGET_NAME} DESTINATION ${PYTHON_SITELIB}/${MODULE})
 
