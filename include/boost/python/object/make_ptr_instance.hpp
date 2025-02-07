@@ -62,14 +62,76 @@ struct make_ptr_instance
         );
         return r ? r->m_class_object : 0;
     }
-    
+
     template <class U>
     static inline PyTypeObject* get_derived_class_object(boost::python::detail::false_, U*)
     {
         return 0;
     }
 };
-  
+
+/// Specialize template for shared pointers
+//Holder = pointer_holder<std::shared_ptr<T>, T>::construct<std::shared_ptr<T> >
+template <class T>
+struct make_ptr_instance
+  <T, typename pointer_holder<std::shared_ptr<T>, T>::construct<std::shared_ptr<T> > >
+  : make_instance_impl
+    <T, typename pointer_holder<std::shared_ptr<T>, T>::construct<std::shared_ptr<T> >,
+     make_ptr_instance<T, typename pointer_holder<std::shared_ptr<T>, T>::construct
+		       <std::shared_ptr<T> >
+		      >
+    >
+{
+  typedef typename pointer_holder<std::shared_ptr<T>, T>::construct<std::shared_ptr<T> > Holder;
+    template <class Arg>
+    static inline Holder* construct(void* storage, PyObject*, Arg& x)
+    {
+      return new (storage) Holder(x);
+    }
+
+    template <class Ptr>
+    static inline PyTypeObject* get_class_object(Ptr const& x)
+    {
+        return get_class_object_impl(get_pointer(x));
+    }
+#ifndef BOOST_PYTHON_NO_PY_SIGNATURES
+    static inline PyTypeObject const* get_pytype()
+    {
+        return converter::registered<T>::converters.get_class_object();
+    }
+#endif
+ private:
+    template <class U>
+    static inline PyTypeObject* get_class_object_impl(U const volatile* p)
+    {
+        if (p == 0)
+            return 0; // means "return None".
+
+        PyTypeObject* derived = get_derived_class_object(
+            BOOST_DEDUCED_TYPENAME boost::python::detail::is_polymorphic<U>::type(), p);
+
+        if (derived)
+            return derived;
+        return converter::registered<T>::converters.get_class_object();
+    }
+
+    template <class U>
+    static inline PyTypeObject* get_derived_class_object(boost::python::detail::true_, U const volatile* x)
+    {
+        converter::registration const* r = converter::registry::query(
+            type_info(typeid(*x))
+        );
+        return r ? r->m_class_object : 0;
+    }
+
+    template <class U>
+    static inline PyTypeObject* get_derived_class_object(boost::python::detail::false_, U*)
+    {
+        return 0;
+    }
+};
+
+
 
 }}} // namespace boost::python::object
 
