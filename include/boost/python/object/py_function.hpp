@@ -138,7 +138,7 @@ struct py_function
 #if defined(BOOST_NO_CXX11_SMART_PTR)
       : m_impl(rhs.m_impl)
 #else
-      : m_impl(std::move(rhs.m_impl))
+      : m_impl(rhs.m_impl)
 #endif
     {}
 
@@ -171,7 +171,7 @@ struct py_function
 #if defined(BOOST_NO_CXX11_SMART_PTR)
     mutable std::auto_ptr<py_function_impl_base> m_impl;
 #else
-    mutable std::unique_ptr<py_function_impl_base> m_impl;
+    mutable std::auto_ptr<py_function_impl_base> m_impl;
 #endif
 };
 

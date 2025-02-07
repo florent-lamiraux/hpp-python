@@ -12,7 +12,7 @@
 # include <boost/detail/workaround.hpp>
 # include <typeinfo>
 
-namespace boost { namespace python { namespace objects { 
+namespace boost { namespace python { namespace objects {
 
 template <class T, class Holder>
 struct make_ptr_instance
@@ -24,10 +24,10 @@ struct make_ptr_instance
 #if defined(BOOST_NO_CXX11_SMART_PTR)
       return new (storage) Holder(x);
 #else
-      return new (storage) Holder(std::move(x));
+      return new (storage) Holder(x);
 #endif
     }
-    
+
     template <class Ptr>
     static inline PyTypeObject* get_class_object(Ptr const& x)
     {

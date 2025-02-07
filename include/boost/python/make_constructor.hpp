@@ -50,7 +50,7 @@ namespace detail
 	dispatch(owner, detail::false_());
 #else
 	std::unique_ptr<U> owner(x);
-	dispatch(std::move(owner), detail::false_());
+	dispatch(owner, detail::false_());
 #endif
       }
       
@@ -67,7 +67,7 @@ namespace detail
 #if defined(BOOST_NO_CXX11_SMART_PTR)
               (new (memory) holder(x))->install(this->m_self);
 #else
-              (new (memory) holder(std::move(x)))->install(this->m_self);
+              (new (memory) holder(x))->install(this->m_self);
 #endif
           }
           catch(...) {

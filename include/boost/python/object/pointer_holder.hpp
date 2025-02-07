@@ -109,7 +109,7 @@ inline pointer_holder<Pointer,Value>::pointer_holder(Pointer p)
 #if defined(BOOST_NO_CXX11_SMART_PTR)
     : m_p(p)
 #else
-    : m_p(std::move(p))
+    : m_p(p)
 #endif
 {
 }
@@ -119,7 +119,7 @@ inline pointer_holder_back_reference<Pointer,Value>::pointer_holder_back_referen
 #if defined(BOOST_NO_CXX11_SMART_PTR)
     : m_p(p)
 #else
-    : m_p(std::move(p))
+    : m_p(p)
 #endif
 {
 }
