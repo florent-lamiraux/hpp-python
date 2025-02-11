@@ -1,5 +1,5 @@
 #
-# Copyright (c) 2018 CNRS Authors: Joseph Mirabel
+# Copyright (c) 2025 CNRS Authors: Florent Lamiraux
 #
 # This file is part of hpp-python hpp-python is free software: you can
 # redistribute it and/or modify it under the terms of the GNU Lesser General
@@ -12,19 +12,7 @@
 # details.  You should have received a copy of the GNU Lesser General Public
 # License along with hpp-python  If not, see <http://www.gnu.org/licenses/>.
 
-set(PYTHON_UNIT_TESTS
-    imports
-    liegroup
-    load_ur3
-    solver
-    differentiable-function
-    problem-solver
-    path)
-
-foreach(UNIT_TEST ${PYTHON_UNIT_TESTS})
-  add_python_unit_test(${UNIT_TEST} tests/${UNIT_TEST}.py)
-endforeach()
-
-set_tests_properties(
-  ${PYTHON_UNIT_TESTS}
-  PROPERTIES ENVIRONMENT "PYTHONPATH=${CMAKE_BINARY_DIR}/src:$ENV{PYTHONPATH}")
+add_library(test_python_cxx MODULE python-raw.cpp)
+target_include_directories(test_python_cxx PRIVATE ${PYTHON_INCLUDE_DIRS})
+target_link_libraries(test_python_cxx PUBLIC ${PYTHON_LIBRARIES})
+set_target_properties(test_python_cxx PROPERTIES PREFIX "")
