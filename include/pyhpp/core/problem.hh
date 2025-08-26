@@ -40,6 +40,8 @@ namespace pyhpp {
 namespace core {
 
 struct SteeringMethod;
+typedef std::shared_ptr<SteeringMethod> PyWSteeringMethodPtr_t;
+
 typedef hpp::core::ProblemPtr_t ProblemPtr_t;
 typedef hpp::core::ProblemConstPtr_t ProblemConstPtr_t;
 typedef hpp::core::DevicePtr_t DevicePtr_t;
@@ -64,14 +66,14 @@ struct Problem {
   const DevicePtr_t& robot() const;
   void setParameter(const std::string& name, const Parameter& value);
   const Parameter& getParameter(const std::string& name) const;
-  pyhpp::core::SteeringMethod steeringMethod() const;
+  PyWSteeringMethodPtr_t steeringMethod() const;
   const ConfigValidationsPtr_t& configValidation() const;
   PathValidationPtr_t pathValidation() const;
   PathProjectorPtr_t pathProjector() const;
   DistancePtr_t distance() const;
   const ProblemTargetPtr_t& target() const;
   ConfigurationShooterPtr_t configurationShooter() const;
-  void steeringMethod(const pyhpp::core::SteeringMethod& steeringMethod);
+  void steeringMethod(const PyWSteeringMethodPtr_t& steeringMethod);
   void configValidation(const ConfigValidationsPtr_t& cv);
   void pathValidation(const PathValidationPtr_t& pv);
   void pathProjector(const PathProjectorPtr_t& pp);

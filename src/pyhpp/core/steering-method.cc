@@ -138,6 +138,7 @@ const ConstraintSetPtr_t& SteeringMethod::constraints() const {
 }
 
 void exposeSteeringMethod() {
+  register_ptr_to_python<std::shared_ptr<pyhpp::core::SteeringMethod>>();
   class_<SteeringMethod>("SteeringMethod", no_init)
       .def("__call__", &SteeringMethod::operator())
       .def("steer", &SteeringMethod::steer)

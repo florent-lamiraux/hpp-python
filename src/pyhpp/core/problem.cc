@@ -64,9 +64,9 @@ ConfigurationShooterPtr_t Problem::configurationShooter() const {
     return obj->configurationShooter();
 }
 
-pyhpp::core::SteeringMethod Problem::steeringMethod() const {
-  pyhpp::core::SteeringMethod wrapper;
-  wrapper.obj = obj->steeringMethod();
+PyWSteeringMethodPtr_t Problem::steeringMethod() const {
+  auto wrapper = std::make_shared<pyhpp::core::SteeringMethod>();
+  wrapper->obj = obj->steeringMethod();
   return wrapper;
 }
 
@@ -90,8 +90,8 @@ void Problem::configurationShooter(const ConfigurationShooterPtr_t& cs) {
     obj->configurationShooter(cs);
 }
 
-void Problem::steeringMethod(const pyhpp::core::SteeringMethod& steeringMethod) {
-  obj->steeringMethod(steeringMethod.obj);
+void Problem::steeringMethod(const PyWSteeringMethodPtr_t& steeringMethod) {
+  obj->steeringMethod(steeringMethod->obj);
 }
 
 void Problem::configValidation(const ConfigValidationsPtr_t& cv) {
@@ -122,8 +122,8 @@ void Problem::addGoalConfig(ConfigurationIn_t config) {
   obj->addGoalConfig(config);
 }
 
-typedef SteeringMethodPtr_t (Problem::*GetSteeringMethod)() const;
-typedef void (Problem::*SetSteeringMethod)(const SteeringMethodPtr_t&);
+typedef PyWSteeringMethodPtr_t (Problem::*GetSteeringMethod)() const;
+typedef void (Problem::*SetSteeringMethod)(const PyWSteeringMethodPtr_t&);
 
 typedef const ConfigValidationsPtr_t& (Problem::*GetConfigValidation)() const;
 typedef void (Problem::*SetConfigValidation)(const ConfigValidationsPtr_t&);
@@ -198,9 +198,9 @@ void exposeProblem() {
       .PYHPP_DEFINE_METHOD_CONST_REF_BY_VALUE(Problem, robot)
       .PYHPP_DEFINE_METHOD(Problem, setParameter)
       .PYHPP_DEFINE_METHOD_CONST_REF_BY_VALUE(Problem, getParameter)
-      .def("steeringMethod", static_cast<pyhpp::core::SteeringMethod(Problem::*)() const>(&Problem::steeringMethod))
-      .def("steeringMethod", static_cast<void(Problem::*)(const pyhpp::core::SteeringMethod&)>(&Problem::steeringMethod))
-      
+      .def("steeringMethod", static_cast<PyWSteeringMethodPtr_t(Problem::*)() const>(&Problem::steeringMethod))
+      .def("steeringMethod", static_cast<void(Problem::*)(const PyWSteeringMethodPtr_t&)>(&Problem::steeringMethod))
+
       .def("configValidation", 
           static_cast<GetConfigValidation>(&Problem::configValidation),
           return_value_policy<copy_const_reference>())
